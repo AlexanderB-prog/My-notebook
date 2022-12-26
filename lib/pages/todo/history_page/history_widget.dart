@@ -43,19 +43,22 @@ class _HistoryPageWidgetState extends State<HistoryPageWidget> {
       body: ListView.builder(
           itemCount: length,
           itemBuilder: (BuildContext context, int index) {
-            return Card(
-              color: Colors.white,
-              child: Row(
-                children: [
-                  const SizedBox(width: 10),
-                  Text('${index + 1}.'),
-                  const SizedBox(width: 10),
-                  Expanded(
-                      child: Text(HistoryPageModelProvider.of(context)
-                          .model
-                          .todoList[index])),
-                  const Icon(Icons.done),
-                ],
+            return SizedBox(
+              height: 50,
+              child: Card(
+                color: Colors.white,
+                child: Row(
+                  children: [
+                    const SizedBox(width: 10),
+                    Text('${index + 1}.'),
+                    const SizedBox(width: 10),
+                    Expanded(
+                        child: Text(HistoryPageModelProvider.of(context)
+                            .model
+                            .todoList[index])),
+                    const Icon(Icons.done),
+                  ],
+                ),
               ),
             );
           }),

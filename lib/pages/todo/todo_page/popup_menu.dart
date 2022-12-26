@@ -17,6 +17,11 @@ class PopupMenuWidget extends StatelessWidget {
             value: 2,
             onTap: TodoWidgetModelProvider.of(context).model.deleteTodoList,
             child: const Text("Удалить все дела"),
+          ),
+          PopupMenuItem(
+            value: 3,
+            onTap: TodoWidgetModelProvider.of(context).model.clearHistory,
+            child: const Text("Очистить историю"),
           )
         ]
     );

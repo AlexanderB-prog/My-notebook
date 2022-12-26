@@ -40,22 +40,18 @@ class _TodoPageWidgetState extends State<TodoPageWidget> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     TodoListBodyWidget(),
-        HistoryPage(),
-
+    HistoryPage(),
   ];
 
   void _onItemTapped(int index) {
     setState(() {
       if (_selectedIndex == index) return;
-            _selectedIndex = index;
+      _selectedIndex = index;
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Список дел'),
@@ -68,7 +64,6 @@ class _TodoPageWidgetState extends State<TodoPageWidget> {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-
           FloatingActionButton(
             onPressed: () {
               showDialog(
@@ -79,7 +74,9 @@ class _TodoPageWidgetState extends State<TodoPageWidget> {
             },
             child: const Icon(Icons.add_task),
           ),
-          const SizedBox(width: 20,),
+          const SizedBox(
+            width: 20,
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -98,10 +95,7 @@ class _TodoPageWidgetState extends State<TodoPageWidget> {
       ),
     );
   }
-
-
 }
-
 
 class TodoListBodyWidget extends StatelessWidget {
   const TodoListBodyWidget({Key? key}) : super(key: key);
@@ -112,25 +106,31 @@ class TodoListBodyWidget extends StatelessWidget {
     return ListView.builder(
         itemCount: length,
         itemBuilder: (BuildContext context, int index) {
-          return Card(
-            color: Colors.grey[200],
-            child: Row(
-              children: [
-                const SizedBox(width: 10),
-                Text('${index + 1}.'),
-                const SizedBox(width: 10),
-                Expanded(
-                    child: Text(TodoWidgetModelProvider.of(context)
-                        .model
-                        .todoList[index])),
-                IconButton(
-                    onPressed: () {
-                      TodoWidgetModelProvider.of(context)
-                          .model
-                          .todoDelete(index);
-                                            },
-                    icon: const Icon(Icons.delete_forever))
-              ],
+          return Container(
+            height: 100,
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+            child: Card(
+              color: Colors.grey[200],
+              child: Row(
+                children: [
+                  const SizedBox(width: 10),
+                  Text('${index + 1}.'),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      TodoWidgetModelProvider.of(context).model.todoList[index],
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        TodoWidgetModelProvider.of(context)
+                            .model
+                            .todoDelete(index);
+                      },
+                      icon: const Icon(Icons.delete_forever))
+                ],
+              ),
             ),
           );
         });

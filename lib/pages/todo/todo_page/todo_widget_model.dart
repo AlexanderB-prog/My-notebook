@@ -67,6 +67,14 @@ class TodoWidgetModel extends ChangeNotifier {
     await todoBox.clear();
   }
 
+  Future<void> clearHistory() async {
+    var historyBox = await Hive.openBox<String>('box_for_todo_history');
+    await historyBox.compact();
+    await historyBox.clear();
+  }
+
+
+
 @override
   void dispose() async {
   await Hive.box('box_for_todo').compact();
