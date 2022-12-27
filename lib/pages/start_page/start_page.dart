@@ -33,34 +33,6 @@ class StartPage extends StatelessWidget {
               ],
             ),
           ),
-          ElevatedButton(
-            style: styleElevatedButton,
-            onPressed: () {
-              Navigator.pushNamed(context, '/notes_page');
-            },
-            child: Row(
-              children: const [
-                Icon(Icons.note),
-                SizedBox(width: 10),
-                Expanded(child: Text('Заметки')),
-                Icon(Icons.chevron_right)
-              ],
-            ),
-          ),
-          ElevatedButton(
-            style: styleElevatedButton,
-            onPressed: () {
-              Navigator.pushNamed(context, '/calculator_page');
-            },
-            child: Row(
-              children: const [
-                Icon(Icons.calculate),
-                SizedBox(width: 10),
-                Expanded(child: Text('Калькулятор')),
-                Icon(Icons.chevron_right)
-              ],
-            ),
-          ),
         ],
       ),
     );
