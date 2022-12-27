@@ -14,7 +14,6 @@ class _HistoryPageState extends State<HistoryPage> {
 
   @override
   void dispose() {
-   // HistoryPageModelProvider.of(context).model.dispose();
     super.dispose();
   }
 

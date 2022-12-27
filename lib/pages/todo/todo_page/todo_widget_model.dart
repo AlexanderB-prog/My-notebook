@@ -19,12 +19,6 @@ class TodoWidgetModel extends ChangeNotifier {
     });
   }
 
-  void todoSave(BuildContext context, String value) async {
-    if (value == '') return;
-    var todoBox = await Hive.openBox<String>('box_for_todo');
-    await todoBox.add(value);
-
-  }
 
   Future<void> todoDelete(int value) async {
     var todoBox = await Hive.openBox<String>('box_for_todo');
@@ -33,46 +27,6 @@ class TodoWidgetModel extends ChangeNotifier {
     historyBox.add(deleteItem);
     todoBox.deleteAt(value);
   }
-
-
-
-  Future<void> basicTodoList() async {
-    var todoBox = await Hive.openBox<String>('box_for_todo');
-      var todoList = <String>[
-      'Добавить сохранение в базу',
-      'Добавить воможность редактирования',
-      'Добавить проверку на введение пустого текста. Готово.',
-      'Создать калькулятор',
-      'Добавить историю',
-      'добавить календарь',
-      'Доабвить возможсть выбирать цвет',
-      'Возможность прокидывать дела в календарь на телефон',
-      'Добавить авторизацию',
-      'Добавить синхронизацию между устройствами под одной авторизацией',
-      'Добавть позвможность менять местами дела в списке',
-      // '',
-      // '',
-      // '',
-      // ''
-    ];
-    for (var element in todoList) {todoBox.add(element); }
-  }
-
-  Future<void> deleteTodoList() async {
-    var todoBox = await Hive.openBox<String>('box_for_todo');
-    var historyBox = await Hive.openBox<String>('box_for_todo_history');
-    List<String> deleteItems = todoBox.values.toList();
-    historyBox.addAll(deleteItems);
-    await todoBox.compact();
-    await todoBox.clear();
-  }
-
-  Future<void> clearHistory() async {
-    var historyBox = await Hive.openBox<String>('box_for_todo_history');
-    await historyBox.compact();
-    await historyBox.clear();
-  }
-
 
 
 @override

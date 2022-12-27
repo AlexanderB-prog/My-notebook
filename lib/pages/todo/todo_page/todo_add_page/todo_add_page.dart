@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:notebook/pages/todo/todo_page/todo_add_page/select_color_widget.dart';
-import 'package:notebook/pages/todo/todo_page/todo_widget_model.dart';
 
 class TodoAddPageWidget extends StatefulWidget {
   const TodoAddPageWidget({Key? key}) : super(key: key);
@@ -20,11 +18,21 @@ class _TodoAddPageWidgetState extends State<TodoAddPageWidget> {
     super.dispose();
   }
 
-  Future<void> _onSubmitted(String text) async {
+  void _onSubmitted(String text) async {
     if (text == '') return;
     var todoBox = await Hive.openBox<String>('box_for_todo');
     await todoBox.add(text);
   }
+
+  void _todoSave(BuildContext context, String value) async {
+    if (value == '') return;
+    var todoBox = await Hive.openBox<String>('box_for_todo');
+    await todoBox.add(value);
+
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +54,7 @@ class _TodoAddPageWidgetState extends State<TodoAddPageWidget> {
             controller: _newDoController,
             onSubmitted: (text) {
               if (text != '') {
-                TodoWidgetModelProvider.of(context).model.todoSave(context, text);
+                _todoSave(context, text);
                 _newDoController.clear();
               }
               Navigator.pop(context);
