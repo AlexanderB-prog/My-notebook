@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:notebook/pages/start_page/start_page.dart';
-import 'package:notebook/pages/todo/history_page/history_widget.dart';
-import 'package:notebook/pages/todo/todo_page/todo_add_page/todo_add_page.dart';
-import 'package:notebook/pages/todo/todo_page/todo_page.dart';
+import 'package:notebook/pages/navigation/main_navigation.dart';
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final mainNavigation = MainNavigation();
+  MyApp({Key? key}) : super(key: key);
 
 
   @override
@@ -27,14 +25,8 @@ class MyApp extends StatelessWidget {
           selectedItemColor: Colors.white,
         ),
       ),
-
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const StartPage(),
-        '/todo_page': (context) =>  const TodoPage(),
-        '/todo_page/history_page': (context) =>  const HistoryPage(),
-        '/todo_page/todo_add_page': (context) => const TodoAddPageWidget(),
-      },
+      initialRoute: Screens.main,
+      routes: mainNavigation.routes,
     );
   }
 }
