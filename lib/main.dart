@@ -6,7 +6,8 @@ import 'package:notebook/pages/navigation/main_navigation.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  runApp(MyApp());
+  final app = MyApp();
+  runApp(app);
 }
 
 class MyApp extends StatelessWidget {

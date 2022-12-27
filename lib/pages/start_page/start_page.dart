@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notebook/pages/navigation/main_navigation.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class StartPage extends StatelessWidget {
           ElevatedButton(
             style: styleElevatedButton,
             onPressed: () {
-              Navigator.pushNamed(context, '/todo_page');
+              Navigator.pushNamed(context, Screens.todoPage);
             },
             child: Row(
               children: const [
