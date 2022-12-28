@@ -25,15 +25,16 @@ class _TodoAddPageWidgetState extends State<TodoAddPageWidget> {
       model: _model,
       child: AlertDialog(
         backgroundColor: Colors.grey[200],
-        title: const Text('Добавить задачу'),
+        title: const Text('Введите новую задачу'),
         content: Container(
+          width: 250,
           color: Colors.white,
           child: TextField(
               autofocus: true,
               maxLines: null,
-              minLines: 1,
+              minLines: 2,
               decoration: const InputDecoration(
-                hintText: 'Задача',
+                //hintText: 'Введите новую задачу',
                 isCollapsed: true,
                 contentPadding: EdgeInsets.all(10),
                 border: OutlineInputBorder(),
@@ -54,15 +55,16 @@ class _TodoAddPageWidgetState extends State<TodoAddPageWidget> {
               Navigator.pop(context);
               _newDoController.clear();
             },
-            child: const Text('Cancel'),
+            child: const Text('Назад'),
           ),
           TextButton(
             onPressed: () {
               _model.onSubmitted(_newDoController.text);
-              context.findRootAncestorStateOfType()?.setState(() {});
-              Navigator.pop(context);
+              _newDoController.clear();
+            //  context.findRootAncestorStateOfType()?.setState(() {});
+             // Navigator.pop(context);
             },
-            child: const Text('OK'),
+            child: const Text('Добавить'),
           ),
         ],
       ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'history_widget_model.dart';
 
-
 class HistoryPage extends StatefulWidget {
   const HistoryPage({Key? key}) : super(key: key);
 
@@ -38,30 +37,28 @@ class _HistoryPageWidgetState extends State<HistoryPageWidget> {
   Widget build(BuildContext context) {
     final length = HistoryPageModelProvider.of(context).model.todoList.length;
     return Scaffold(
-
       body: ListView.builder(
           itemCount: length,
           itemBuilder: (BuildContext context, int index) {
-            return SizedBox(
-              height: 50,
-              child: Card(
-                color: Colors.white,
-                child: Row(
-                  children: [
-                    const SizedBox(width: 10),
-                    Text('${index + 1}.'),
-                    const SizedBox(width: 10),
-                    Expanded(
-                        child: Text(HistoryPageModelProvider.of(context)
-                            .model
-                            .todoList[index])),
-                    const Icon(Icons.done),
-                  ],
-                ),
+            return Card(
+              color: Colors.white,
+              child: Row(
+                children: [
+                  const SizedBox(width: 10),
+                  Text('${index + 1}.'),
+                  const SizedBox(width: 10),
+                  Expanded(
+                      child: Text(HistoryPageModelProvider.of(context)
+                          .model
+                          .todoList[index])),
+                  const Icon(
+                    Icons.done_all,
+                    color: Colors.green,
+                  ),
+                ],
               ),
             );
           }),
-
     );
   }
 }
