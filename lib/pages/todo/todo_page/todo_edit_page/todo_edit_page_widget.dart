@@ -3,7 +3,8 @@ import 'package:notebook/pages/todo/todo_page/todo_edit_page/todo_edit_page_widg
 
 class TodoEditPageWidget extends StatefulWidget {
   final String todoText;
-   const TodoEditPageWidget({Key? key, required this.todoText,}) : super(key: key);
+  final int todoIndex;
+   const TodoEditPageWidget({Key? key, required this.todoText,required this.todoIndex,}) : super(key: key);
 
   @override
   State<TodoEditPageWidget> createState() => _TodoEditPageWidgetState();
@@ -42,13 +43,7 @@ class _TodoEditPageWidgetState extends State<TodoEditPageWidget> {
               border: OutlineInputBorder(),
             ),
             controller: _newDoController,
-            onSubmitted: (text) {
-              if (text != '') {
-               // _model.todoSave(context, text);
-                _newDoController.clear();
-              }
-              Navigator.pop(context);
-            }),
+            ),
       ),
       actions: [
         // const DropdownButtonWidget(),
@@ -61,10 +56,8 @@ class _TodoEditPageWidgetState extends State<TodoEditPageWidget> {
         ),
         TextButton(
           onPressed: () {
-           // _model.onSubmitted(_newDoController.text);
-            _newDoController.clear();
-            //  context.findRootAncestorStateOfType()?.setState(() {});
-            // Navigator.pop(context);
+           _model.onSubmitted(_newDoController.text,widget.todoIndex);
+            Navigator.pop(context);
           },
           child: const Text('Добавить'),
         ),

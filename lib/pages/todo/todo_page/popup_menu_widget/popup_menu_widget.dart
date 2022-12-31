@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notebook/pages/todo/todo_page/popup_menu_widget_model.dart';
+import 'package:notebook/pages/todo/todo_page/popup_menu_widget/popup_menu_widget_model.dart';
 
 class PopupMenuWidget extends StatelessWidget {
   final _model = PopupMenuWidgetModel();

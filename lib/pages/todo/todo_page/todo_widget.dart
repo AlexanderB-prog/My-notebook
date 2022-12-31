@@ -42,10 +42,12 @@ class _TodoListWidgetState extends State<TodoListWidget> {
         itemBuilder: (BuildContext context, int index) {
           String text = TodoWidgetModelProvider.of(context).model.todoList[index];
           return GestureDetector(
-            onTap: () {showDialog(
+            onTap: () {
+
+              showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return TodoEditPageWidget(todoText: text,);
+                  return TodoEditPageWidget(todoText: text,todoIndex: index,);
                 });},
             child: Container(
               //height: 100,

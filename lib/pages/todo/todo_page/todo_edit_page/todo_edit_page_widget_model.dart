@@ -2,22 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class TodoEditPageWidgetModel extends ChangeNotifier {
-  var _todoList = <String>[];
-TodoEditPageWidgetModel(){
-  _setup();
 
-}
 
-  void _setup() async {
+  void todoSave(BuildContext context, String value,int todoIndex) async {
+    if (value == '') return;
     var todoBox = await Hive.openBox<String>('box_for_todo');
-    _todoList = todoBox.values.toList();
+    await todoBox.putAt(todoIndex, value);
   }
 
-  String onEdit(int index) {
-
-    return _todoList[index];
+  void onSubmitted(String text,int todoIndex) async {
+    if (text == '') return;
+    var todoBox = await Hive.openBox<String>('box_for_todo');
+    await todoBox.putAt(todoIndex, text);
   }
-
 
 }
 
