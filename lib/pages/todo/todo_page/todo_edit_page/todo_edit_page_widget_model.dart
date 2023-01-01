@@ -4,17 +4,19 @@ import 'package:hive_flutter/hive_flutter.dart';
 class TodoEditPageWidgetModel extends ChangeNotifier {
 
 
-  void todoSave(BuildContext context, String value,int todoIndex) async {
-    if (value == '') return;
-    var todoBox = await Hive.openBox<String>('box_for_todo');
-    await todoBox.putAt(todoIndex, value);
-  }
 
-  void onSubmitted(String text,int todoIndex) async {
+  void todoSave(String text,int todoIndex) async {
     if (text == '') return;
     var todoBox = await Hive.openBox<String>('box_for_todo');
     await todoBox.putAt(todoIndex, text);
   }
+
+
+  void todoDelete(int value) async {
+    var todoBox = await Hive.openBox<String>('box_for_todo');
+    todoBox.deleteAt(value);
+  }
+
 
 }
 

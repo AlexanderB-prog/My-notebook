@@ -29,6 +29,7 @@ class _TodoEditPageWidgetState extends State<TodoEditPageWidget> {
   Widget build(BuildContext context) {
     _newDoController.text=widget.todoText;
     return AlertDialog(
+      actionsAlignment: MainAxisAlignment.spaceEvenly,
       backgroundColor: Colors.grey[200],
       content: Container(
         width: 250,
@@ -46,17 +47,20 @@ class _TodoEditPageWidgetState extends State<TodoEditPageWidget> {
             ),
       ),
       actions: [
-        // const DropdownButtonWidget(),
+        IconButton(onPressed: () {
+          _model.todoDelete(widget.todoIndex);
+          Navigator.pop(context);
+        }, icon: const Icon(Icons.delete)),
         TextButton(
           onPressed: () {
             Navigator.pop(context);
             _newDoController.clear();
           },
-          child: const Text('Назад'),
+          child: const Text('Отменить'),
         ),
         TextButton(
           onPressed: () {
-           _model.onSubmitted(_newDoController.text,widget.todoIndex);
+           _model.todoSave(_newDoController.text,widget.todoIndex);
             Navigator.pop(context);
           },
           child: const Text('Добавить'),
