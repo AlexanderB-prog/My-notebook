@@ -18,10 +18,9 @@ class TodoAddPageModel extends ChangeNotifier {
 class TodoAddPageModelProvider extends InheritedNotifier {
   final TodoAddPageModel model;
 
-  const TodoAddPageModelProvider(
-    {
-      required this.model,
-      Key? key,
+  const TodoAddPageModelProvider({
+    required this.model,
+    Key? key,
     required Widget child,
   }) : super(
           key: key,

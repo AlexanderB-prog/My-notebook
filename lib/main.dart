@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:notebook/pages/navigation/main_navigation.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
@@ -12,8 +11,8 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final mainNavigation = MainNavigation();
-  MyApp({Key? key}) : super(key: key);
 
+  MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

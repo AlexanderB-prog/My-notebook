@@ -20,17 +20,15 @@ class TodoWidgetModel extends ChangeNotifier {
   }
 
 
-
   Future<void> todoDelete(int value) async {
     var todoBox = await Hive.openBox<String>('box_for_todo');
     var historyBox = await Hive.openBox<String>('box_for_todo_history');
-     String deleteItem = todoBox.getAt(value)!;
+    String deleteItem = todoBox.getAt(value)!;
     historyBox.add(deleteItem);
     todoBox.deleteAt(value);
   }
 
-
-@override
+  @override
   void dispose() async {
   await Hive.box('box_for_todo').compact();
   await Hive.box('box_for_todo').close();

@@ -3,6 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 
 class PopupMenuWidgetModel extends ChangeNotifier {
   var _todoList = <String>[];
+
   List<String> get todoList => _todoList.toList();
 
   PopupMenuWidgetModel() {
@@ -19,8 +20,6 @@ class PopupMenuWidgetModel extends ChangeNotifier {
     });
   }
 
-
-
   Future<void> basicTodoList() async {
     var todoBox = await Hive.openBox<String>('box_for_todo');
     var todoList = <String>[
@@ -34,12 +33,14 @@ class PopupMenuWidgetModel extends ChangeNotifier {
       'Добавить авторизацию',
       'Добавить синхронизацию между устройствами под одной авторизацией',
       'Добавть позвможность менять местами дела в списке',
-       'Добавить примечание или под задачи',
-       'Добавить статус дела',
+      'Добавить примечание или под задачи',
+      'Добавить статус дела',
       // '',
       // ''
     ];
-    for (var element in todoList) {todoBox.add(element); }
+    for (var element in todoList) {
+      todoBox.add(element);
+    }
   }
 
   Future<void> deleteTodoList() async {
@@ -56,8 +57,6 @@ class PopupMenuWidgetModel extends ChangeNotifier {
     await historyBox.compact();
     await historyBox.clear();
   }
-
-
 
   @override
   void dispose() async {
@@ -77,14 +76,14 @@ class PopupMenuWidgetModelProvider extends InheritedNotifier {
     required Widget child,
     required this.model,
   }) : super(
-    key: key,
-    notifier: model,
-    child: child,
-  );
+          key: key,
+          notifier: model,
+          child: child,
+        );
 
   static PopupMenuWidgetModelProvider of(BuildContext context) {
-    final PopupMenuWidgetModelProvider? result =
-    context.dependOnInheritedWidgetOfExactType<PopupMenuWidgetModelProvider>();
+    final PopupMenuWidgetModelProvider? result = context
+        .dependOnInheritedWidgetOfExactType<PopupMenuWidgetModelProvider>();
     assert(result != null, 'No TodoWidgetModelProvider found in context');
     return result!;
   }

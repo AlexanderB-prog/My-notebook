@@ -11,14 +11,11 @@ abstract class Screens {
   static const addPage = '/todo_page/todo_add_page';
 }
 
-
 class MainNavigation {
   Map<String, WidgetBuilder> get routes => {
-    Screens.main: (context) => const StartPage(),
-    Screens.todoPage: (context) => const TodoPage(),
-    Screens.historyPage: (context) => const HistoryPage(),
-    Screens.addPage: (context) => const TodoAddPageWidget(),
-  };
-
+        Screens.main: (context) => const StartPage(),
+        Screens.todoPage: (context) => const TodoPage(),
+        Screens.historyPage: (context) => const HistoryPage(),
+        Screens.addPage: (context) => const TodoAddPageWidget(),
+      };
 }
-

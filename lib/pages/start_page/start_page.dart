@@ -6,8 +6,8 @@ class StartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ButtonStyle styleElevatedButton = ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.grey));
+    ButtonStyle styleElevatedButton =
+        ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey));
     return Scaffold(
       appBar: AppBar(
         title: const Text('Приложение для работы'),

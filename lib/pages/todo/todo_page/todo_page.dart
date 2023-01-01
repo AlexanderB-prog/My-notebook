@@ -4,7 +4,6 @@ import 'package:notebook/pages/todo/todo_page/popup_menu_widget/popup_menu_widge
 import 'package:notebook/pages/todo/todo_page/todo_add_page/todo_add_page.dart';
 import 'package:notebook/pages/todo/todo_page/todo_widget.dart';
 
-
 class TodoPage extends StatefulWidget {
   const TodoPage({Key? key}) : super(key: key);
 

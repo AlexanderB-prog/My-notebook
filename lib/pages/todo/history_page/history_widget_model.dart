@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 class HistoryPageModel extends ChangeNotifier {
   var _todoList = <String>[];
+
   List<String> get todoList => _todoList.toList();
 
   HistoryPageModel() {
@@ -19,14 +20,12 @@ class HistoryPageModel extends ChangeNotifier {
     });
   }
 
-@override
+  @override
   void dispose() async {
-  await Hive.box('box_for_todo_history').compact();
-  await Hive.box('box_for_todo_history').close();
+    await Hive.box('box_for_todo_history').compact();
+    await Hive.box('box_for_todo_history').close();
     super.dispose();
   }
-
-
 }
 
 class HistoryPageModelProvider extends InheritedNotifier {

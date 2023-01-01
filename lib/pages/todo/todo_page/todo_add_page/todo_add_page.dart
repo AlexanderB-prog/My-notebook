@@ -60,8 +60,7 @@ class _TodoAddPageWidgetState extends State<TodoAddPageWidget> {
             onPressed: () {
               _model.onSubmitted(_newDoController.text);
               _newDoController.clear();
-            //  context.findRootAncestorStateOfType()?.setState(() {});
-             // Navigator.pop(context);
+              // Navigator.pop(context);
             },
             child: const Text('Добавить'),
           ),

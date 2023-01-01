@@ -12,7 +12,6 @@ class TodoPageWidget extends StatefulWidget {
 class _TodoPageWidgetState extends State<TodoPageWidget> {
   final _model = TodoWidgetModel();
 
-
   @override
   void dispose() {
     super.dispose();
@@ -40,15 +39,19 @@ class _TodoListWidgetState extends State<TodoListWidget> {
     return ListView.builder(
         itemCount: TodoWidgetModelProvider.of(context).model.todoList.length,
         itemBuilder: (BuildContext context, int index) {
-          String text = TodoWidgetModelProvider.of(context).model.todoList[index];
+          String text =
+              TodoWidgetModelProvider.of(context).model.todoList[index];
           return GestureDetector(
             onTap: () {
-
               showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return TodoEditPageWidget(todoText: text,todoIndex: index,);
-                });},
+                  context: context,
+                  builder: (BuildContext context) {
+                    return TodoEditPageWidget(
+                      todoText: text,
+                      todoIndex: index,
+                    );
+                  });
+            },
             child: Container(
               //height: 100,
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
@@ -67,7 +70,9 @@ class _TodoListWidgetState extends State<TodoListWidget> {
                     ),
                     IconButton(
                         onPressed: () {
-                          TodoWidgetModelProvider.of(context).model.todoDelete(index);
+                          TodoWidgetModelProvider.of(context)
+                              .model
+                              .todoDelete(index);
                         },
                         icon: const Icon(Icons.done_outline_rounded))
                   ],
