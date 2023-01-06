@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notebook/api_service/data_api_service/data_api_service.dart';
+
 
 class TodoWidgetModel extends ChangeNotifier {
   var _todoList = <String>[];
@@ -10,8 +12,7 @@ class TodoWidgetModel extends ChangeNotifier {
   }
 
   void _setup() async {
-    var todoBox = await Hive.openBox<String>('box_for_todo');
-    _todoList = todoBox.values.toList();
+    _todoList = DataApiService.setup as List<String>;
     notifyListeners();
     todoBox.listenable().addListener(() {
       _todoList = todoBox.values.toList();
