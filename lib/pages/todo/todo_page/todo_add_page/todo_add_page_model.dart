@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:notebook/api_service/data_service/data_service.dart';
 
 class TodoAddPageModel extends ChangeNotifier {
   void onSubmitted(String text) async {
     if (text == '') return;
-    var todoBox = await Hive.openBox<String>('box_for_todo');
+    var todoBox = await DataService.instance.openTodoBox();
     await todoBox.add(text);
   }
 
   void todoSave(BuildContext context, String value) async {
     if (value == '') return;
-    var todoBox = await Hive.openBox<String>('box_for_todo');
+    var todoBox = await DataService.instance.openTodoBox();
     await todoBox.add(value);
   }
 }

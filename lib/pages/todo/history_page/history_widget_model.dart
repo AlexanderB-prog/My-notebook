@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notebook/api_service/data_service/data_service.dart';
 
 class HistoryPageModel extends ChangeNotifier {
   var _todoList = <String>[];
@@ -11,7 +12,7 @@ class HistoryPageModel extends ChangeNotifier {
   }
 
   void _setup() async {
-    var historyBox = await Hive.openBox<String>('box_for_todo_history');
+    var historyBox = await DataService.instance.openHistoryBox();
     _todoList = historyBox.values.toList();
     notifyListeners();
     historyBox.listenable().addListener(() {
@@ -22,8 +23,7 @@ class HistoryPageModel extends ChangeNotifier {
 
   @override
   void dispose() async {
-    await Hive.box('box_for_todo_history').compact();
-    await Hive.box('box_for_todo_history').close();
+    DataService.instance.closeBox(await DataService.instance.openHistoryBox());
     super.dispose();
   }
 }

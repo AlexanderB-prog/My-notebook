@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:notebook/api_service/data_service/data_service.dart';
 
 class PopupMenuWidgetModel extends ChangeNotifier {
   var _todoList = <String>[];
@@ -11,7 +12,7 @@ class PopupMenuWidgetModel extends ChangeNotifier {
   }
 
   void _setup() async {
-    var todoBox = await Hive.openBox<String>('box_for_todo');
+    var todoBox = await DataService.instance.openTodoBox();
     _todoList = todoBox.values.toList();
     notifyListeners();
     todoBox.listenable().addListener(() {
@@ -21,7 +22,7 @@ class PopupMenuWidgetModel extends ChangeNotifier {
   }
 
   Future<void> basicTodoList() async {
-    var todoBox = await Hive.openBox<String>('box_for_todo');
+    var todoBox = await DataService.instance.openTodoBox();
     var todoList = <String>[
       //'Добавить сохранение в базу',
       'Добавить воможность редактирования',
@@ -44,28 +45,27 @@ class PopupMenuWidgetModel extends ChangeNotifier {
   }
 
   Future<void> deleteTodoList() async {
-    var todoBox = await Hive.openBox<String>('box_for_todo');
-    var historyBox = await Hive.openBox<String>('box_for_todo_history');
+    var todoBox = await DataService.instance.openTodoBox();
+    var historyBox = await DataService.instance.openHistoryBox();
     List<String> deleteItems = todoBox.values.toList();
     historyBox.addAll(deleteItems);
-    await todoBox.compact();
     await todoBox.clear();
+    await todoBox.compact();
   }
 
   Future<void> clearHistory() async {
-    var historyBox = await Hive.openBox<String>('box_for_todo_history');
-    await historyBox.compact();
+    var historyBox = await DataService.instance.openHistoryBox();
     await historyBox.clear();
+    await historyBox.compact();
   }
 
   @override
-  void dispose() async {
-    await Hive.box('box_for_todo').compact();
-    await Hive.box('box_for_todo').close();
-    await Hive.box('box_for_todo_history').compact();
-    await Hive.box('box_for_todo_history').close();
+  Future<void> dispose() async {
+    DataService.instance.closeBox(await DataService.instance.openTodoBox());
+    DataService.instance.closeBox(await DataService.instance.openHistoryBox());
     super.dispose();
   }
+
 }
 
 class PopupMenuWidgetModelProvider extends InheritedNotifier {
